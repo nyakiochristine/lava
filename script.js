@@ -6,6 +6,22 @@ const loveLanguages = [
     'Physical Touch'
 ];
 
+const descriptions = {
+    0: "💬 You thrive on verbal encouragement! Compliments, 'I love you's, and words of affirmation fill your love tank.",
+    1: "🛠️ Actions speak louder than words! Help with chores, errands, and thoughtful service shows you care.",
+    2: "🎁 You feel most loved through thoughtful gifts that show someone was thinking of you.",
+    3: "⏰ Quality time with undivided attention and meaningful conversation is your love language.",
+    4: "🤗 Physical touch - hugs, cuddles, and holding hands make you feel truly connected."
+};
+
+const icons = {
+    0: '<i class="fas fa-comment-dots text-primary me-2"></i>',
+    1: '<i class="fas fa-hands-helping text-success me-2"></i>',
+    2: '<i class="fas fa-gift text-warning me-2"></i>',
+    3: '<i class="fas fa-clock text-info me-2"></i>',
+    4: '<i class="fas fa-hands text-danger me-2"></i>'
+};
+
 const questions = [
     {
         text: "How do you prefer to receive appreciation?",
@@ -48,7 +64,7 @@ const questions = [
         ]
     },
     {
-        text: "What’s your favorite way to celebrate special occasions?",
+        text: "What's your favorite way to celebrate special occasions?",
         options: [
             { text: "Heartfelt toasts and speeches", lang: 0 },
             { text: "Someone else handling all the planning", lang: 1 },
@@ -68,9 +84,9 @@ const questions = [
         ]
     },
     {
-        text: "What’s the best way to apologize to you?",
+        text: "What's the best way to apologize to you?",
         options: [
-            { text: "Sincere words explaining they’re sorry", lang: 0 },
+            { text: "Sincere words explaining they're sorry", lang: 0 },
             { text: "Making it up to me with helpful actions", lang: 1 },
             { text: "A peace offering gift", lang: 2 },
             { text: "Quality time to talk it through", lang: 3 },
@@ -98,7 +114,7 @@ const questions = [
         ]
     },
     {
-        text: "What’s your ideal morning routine with a partner?",
+        text: "What's your ideal morning routine with a partner?",
         options: [
             { text: "Sweet morning affirmations", lang: 0 },
             { text: "Making me coffee/breakfast", lang: 1 },
@@ -112,6 +128,7 @@ const questions = [
 let currentQuestion = 0;
 let scores = [0, 0, 0, 0, 0];
 let answers = [];
+let partnerMode = false;
 
 function init() {
     generateQuestions();
@@ -119,6 +136,11 @@ function init() {
     document.getElementById('nextBtn').addEventListener('click', nextQuestion);
     document.getElementById('prevBtn').addEventListener('click', prevQuestion);
     document.getElementById('restartBtn').addEventListener('click', restartQuiz);
+    document.getElementById('shareBtn')?.addEventListener('click', shareResult);
+    document.getElementById('partnerMode')?.addEventListener('change', function() {
+        partnerMode = this.checked;
+    });
+    loadPreviousResults();
 }
 
 function generateQuestions() {
@@ -128,6 +150,7 @@ function generateQuestions() {
         div.className = `question-card ${index === 0 ? '' : 'hidden'}`;
         div.id = `question-${index}`;
         div.innerHTML = `
+            <div class="question-counter">Q${index + 1}/10</div>
             <h3 class="mb-4">${index + 1}. ${q.text}</h3>
             ${q.options.map((opt, optIndex) => 
                 `<label class="option-label">
@@ -158,6 +181,7 @@ function nextQuestion() {
     if (selected) {
         const langIndex = parseInt(selected.value);
         scores[langIndex]++;
+        answers[currentQuestion] = langIndex;
         currentQuestion++;
         
         current.classList.add('hidden');
@@ -200,7 +224,6 @@ function showResults() {
     const topLangIndex = scores.indexOf(maxScore);
     const topLang = loveLanguages[topLangIndex];
     
-    // Save to localStorage
     localStorage.setItem('heartspeakResults', JSON.stringify({
         scores: scores,
         topLanguage: topLang,
@@ -209,9 +232,10 @@ function showResults() {
     
     document.getElementById('quiz').classList.add('hidden');
     document.getElementById('results').classList.remove('hidden');
-    document.getElementById('resultText').textContent = topLang;
+    document.getElementById('resultText').innerHTML = `${icons[topLangIndex]} ${topLang}`;
     
     createResultsChart();
+    createDescription();
     createConfetti();
 }
 
@@ -224,11 +248,10 @@ function createResultsChart() {
     
     loveLanguages.forEach((lang, i) => {
         const percentage = (scores[i] / 10) * 100;
-        const barColor = i === scores.indexOf(Math.max(...scores)) ? '#ff4757' : '#ff6b9d';
         html += `
             <div class="col-md-6 col-lg-2-4">
                 <div class="text-center">
-                    <div class="fw-bold fs-6 mb-2">${lang}</div>
+                    <div class="fw-bold fs-6 mb-2">${icons[i]} ${lang}</div>
                     <div class="progress mx-auto" style="width: 80%; height: 20px;">
                         <div class="progress-bar bg-danger" style="width: ${percentage}%"></div>
                     </div>
@@ -242,9 +265,20 @@ function createResultsChart() {
     chartDiv.innerHTML = html;
 }
 
-function createConfetti() {
-    // more elaborate effects
+function createDescription() {
+    const maxScore = Math.max(...scores);
+    const topLangIndex = scores.indexOf(maxScore);
+    
+    const descriptionDiv = document.createElement('div');
+    descriptionDiv.className = 'alert alert-info mt-4 p-4 rounded-4';
+    descriptionDiv.innerHTML = `
+        <h5 class="mb-3"><i class="fas fa-heart text-danger me-2"></i>Your Love Profile:</h5>
+        <p class="mb-0 fs-6">${descriptions[topLangIndex]}</p>
+    `;
+    document.querySelector('#results .col-lg-10').insertBefore(descriptionDiv, document.getElementById('resultsChart'));
+}
 
+function createConfetti() {
     const colors = ['#ff6b9d', '#ff8e8e', '#ff4757', '#ff6b9d', '#fecfef'];
     const confetti = document.createElement('div');
     confetti.className = 'confetti';
@@ -268,36 +302,53 @@ function createConfetti() {
     }
     
     document.body.appendChild(confetti);
-    
     setTimeout(() => confetti.remove(), 6000);
 }
 
-// Add CSS for confetti animation
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes fall {
-        to {
-            transform: translateY(100vh) rotate(720deg);
-            opacity: 0;
-        }
+function shareResult() {
+    const topLang = loveLanguages[scores.indexOf(Math.max(...scores))];
+    const text = `My love language is ${topLang}! 💕 What's yours? Try HeartSpeak quiz!`;
+    
+    if (navigator.share) {
+        navigator.share({ title: 'HeartSpeak Quiz', text });
+    } else if (navigator.clipboard) {
+        navigator.clipboard.writeText(text);
+        alert('Results copied to clipboard! 📋');
+    } else {
+        prompt('Copy this text to share:', text);
     }
-`;
-document.head.appendChild(style);
+}
+
+// Add CSS for confetti animation
+if (!document.querySelector('style[data-confetti]')) {
+    const style = document.createElement('style');
+    style.setAttribute('data-confetti', 'true');
+    style.textContent = `
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+}
 
 function restartQuiz() {
     currentQuestion = 0;
     scores = [0, 0, 0, 0, 0];
+    answers = [];
     document.querySelectorAll('.question-card').forEach(q => {
         q.classList.add('hidden');
         q.querySelectorAll('input').forEach(input => input.checked = false);
     });
+    document.querySelector('.alert')?.remove();
     document.getElementById('results').classList.add('hidden');
     document.getElementById('landing').classList.remove('hidden');
     document.getElementById('progressBar').style.width = '0%';
     document.getElementById('prevBtn').classList.add('hidden');
 }
 
-// Load previous results if available
 function loadPreviousResults() {
     const saved = localStorage.getItem('heartspeakResults');
     if (saved) {
@@ -307,4 +358,3 @@ function loadPreviousResults() {
 }
 
 init();
-loadPreviousResults();

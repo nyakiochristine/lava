@@ -59,6 +59,18 @@ body {
 
 .hidden { display: none !important; }
 
+.question-counter {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255,255,255,0.9);
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+
 .confetti {
     position: fixed;
     top: 0;
