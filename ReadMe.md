@@ -86,13 +86,6 @@ lava-love-quiz/
 └── README.md       # You're reading it!
 ```
 
-
-## 📖 Learn More
-
-- **[Full Case Study](https://your-portfolio.com/case-studies/lava)** - Design process, user research, iterations
-- **[Design System](https://www.figma.com/file/your-design)** - Colors, typography, components
-- **[Development Blog](https://dev.to/your-article)** - Technical deep dive
-
 ## 📄 License
 
 MIT License - Feel free to use, modify, and share!
