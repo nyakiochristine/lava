@@ -1,3 +1,9 @@
+## 🚀 Deployment
+
+The app is deployed on:
+- **Vercel** (Primary): [lava-love-quiz.vercel.app](https://lava-rose.vercel.app/)
+- **GitHub Pages** (Backup): [nyakiochristine.github.io/lava](https://nyakiochristine.github.io/lava/)
+
 # Lava 💖 Love Language Quiz
 
 A beautiful, responsive web app that helps users discover their primary **love language** through 10 engaging questions. Built with HTML, CSS, Bootstrap, and vanilla JavaScript.
@@ -6,13 +12,12 @@ A beautiful, responsive web app that helps users discover their primary **love l
 
 ## 🚀 Live Demo
 
-**[View Live App on Vercel](https://lava-love-quiz.vercel.app)** | **[GitHub Pages](https://nyakiochristine.github.io/lava/)**
+**[View Live App on Vercel](https://lava-rose.vercel.app)** | **[GitHub Pages](https://nyakiochristine.github.io/lava/)**
 
 ## 📚 Documentation
 
-- **[📖 Case Study](https://your-portfolio.com/case-studies/lava-love-quiz)** - Deep dive into design decisions, user research, and development process
-- **[🎨 Design Documents](https://www.figma.com/file/your-design-file)** - Wireframes, mockups, and design system
-- **[📊 User Testing Results](https://docs.google.com/document/d/your-research-doc)** - Insights from usability testing
+- **[📖 Case Study](https://docs.google.com/document/d/1TL383AcKgr_djYaIPpk6lTDPO6KHqZtfnDD4Ldxah4Q/edit?tab=t.0)** - Deep dive into design decisions, user research, and development process
+- **[🎨 Design Documents](https://docs.google.com/document/d/1hWWqE0OKt3NpcPWAF0YkDPZd_cPw064fUlIvjV1UzIQ/edit?usp=sharing)** - Wireframes, mockups, and design system
 
 ## 📝 Case Study Summary
 
@@ -26,9 +31,7 @@ A beautiful, responsive web app that helps users discover their primary **love l
 - Responsive design that works seamlessly across all devices
 
 **Impact:** 
-- 95% completion rate (vs 60% industry average for personality quizzes)
 - Average session time: 2.5 minutes
-- 78% of users enable dark mode
 - Users return to check history an average of 3 times
 
 **Tech Highlights:** Built with vanilla JavaScript for optimal performance, localStorage for data persistence, and Bootstrap 5 for rapid responsive development. No external dependencies for core functionality.
@@ -83,16 +86,6 @@ lava-love-quiz/
 └── README.md       # You're reading it!
 ```
 
-## 🚀 Deployment
-
-The app is deployed on:
-- **Vercel** (Primary): [lava-love-quiz.vercel.app](https://lava-love-quiz.vercel.app)
-- **GitHub Pages** (Backup): [nyakiochristine.github.io/lava](https://nyakiochristine.github.io/lava/)
-
-### Deploy Your Own
-1. Fork this repository
-2. Connect to Vercel or Netlify
-3. Deploy (no build configuration needed!)
 
 ## 📖 Learn More
 
