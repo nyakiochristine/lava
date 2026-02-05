@@ -140,7 +140,12 @@ function init() {
     document.getElementById('partnerMode')?.addEventListener('change', function() {
         partnerMode = this.checked;
     });
+    document.getElementById('darkModeToggle')?.addEventListener('click', toggleDarkMode);
+    document.getElementById('historyBtn')?.addEventListener('click', showHistory);
+    document.getElementById('backToHomeBtn')?.addEventListener('click', backToHome);
+    document.getElementById('clearHistoryBtn')?.addEventListener('click', clearHistory);
     loadPreviousResults();
+    loadDarkModePreference();
 }
 
 function generateQuestions() {
@@ -224,11 +229,14 @@ function showResults() {
     const topLangIndex = scores.indexOf(maxScore);
     const topLang = loveLanguages[topLangIndex];
     
-    localStorage.setItem('heartspeakResults', JSON.stringify({
+    // Save to history
+    saveToHistory({
         scores: scores,
         topLanguage: topLang,
-        date: new Date().toLocaleDateString()
-    }));
+        topLanguageIndex: topLangIndex,
+        date: new Date().toISOString(),
+        timestamp: Date.now()
+    });
     
     document.getElementById('quiz').classList.add('hidden');
     document.getElementById('results').classList.remove('hidden');
@@ -350,10 +358,166 @@ function restartQuiz() {
 }
 
 function loadPreviousResults() {
-    const saved = localStorage.getItem('heartspeakResults');
-    if (saved) {
-        const results = JSON.parse(saved);
-        console.log(`Previous result: ${results.topLanguage} on ${results.date}`);
+    const history = getQuizHistory();
+    if (history.length > 0) {
+        const latest = history[history.length - 1];
+        console.log(`Previous result: ${latest.topLanguage} on ${new Date(latest.date).toLocaleDateString()}`);
+    }
+}
+
+function getQuizHistory() {
+    const history = localStorage.getItem('lavaQuizHistory');
+    return history ? JSON.parse(history) : [];
+}
+
+function saveToHistory(result) {
+    const history = getQuizHistory();
+    history.push(result);
+    localStorage.setItem('lavaQuizHistory', JSON.stringify(history));
+}
+
+function showHistory() {
+    const history = getQuizHistory();
+    document.getElementById('landing').classList.add('hidden');
+    document.getElementById('history').classList.remove('hidden');
+    
+    const content = document.getElementById('historyContent');
+    
+    if (history.length === 0) {
+        content.innerHTML = `
+            <div class="empty-history">
+                <i class="fas fa-history"></i>
+                <h3>No Quiz History Yet</h3>
+                <p class="lead mt-3">Take the quiz to start tracking your love language journey!</p>
+            </div>
+        `;
+        return;
+    }
+    
+    let html = '<div class="row g-4">';
+    
+    history.reverse().forEach((result, index) => {
+        const actualIndex = history.length - 1 - index;
+        const date = new Date(result.date);
+        const formattedDate = date.toLocaleDateString('en-US', { 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+        
+        // Check if there's a trend
+        let trendHtml = '';
+        if (actualIndex < history.length - 1) {
+            const nextResult = history[actualIndex + 1];
+            if (result.topLanguage === nextResult.topLanguage) {
+                trendHtml = '<div class="trend-indicator trend-same"><i class="fas fa-equals"></i> Consistent</div>';
+            } else {
+                trendHtml = '<div class="trend-indicator trend-up"><i class="fas fa-arrow-up"></i> Changed</div>';
+            }
+        }
+        
+        html += `
+            <div class="col-12">
+                <div class="history-card">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <div class="d-flex align-items-center mb-2">
+                                <span class="fs-4 me-2">${icons[result.topLanguageIndex]}</span>
+                                <h4 class="mb-0">${result.topLanguage}</h4>
+                            </div>
+                            <p class="text-muted mb-2">
+                                <i class="fas fa-calendar me-2"></i>${formattedDate}
+                            </p>
+                            <div class="d-flex flex-wrap gap-2">
+                                ${result.scores.map((score, i) => 
+                                    `<span class="history-badge" style="background: ${score === Math.max(...result.scores) ? 'rgba(255,107,157,0.3)' : 'rgba(108,117,125,0.15)'}">
+                                        ${loveLanguages[i]}: ${score}/10
+                                    </span>`
+                                ).join('')}
+                            </div>
+                            ${trendHtml}
+                        </div>
+                        <div class="col-md-4 text-md-end mt-3 mt-md-0">
+                            <div class="fs-1 fw-bold" style="color: #ff6b9d;">${Math.max(...result.scores)}/10</div>
+                            <small class="text-muted">Top Score</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+    
+    html += '</div>';
+    
+    // Add summary statistics
+    const topLanguages = history.map(h => h.topLanguage);
+    const languageCounts = {};
+    topLanguages.forEach(lang => {
+        languageCounts[lang] = (languageCounts[lang] || 0) + 1;
+    });
+    const mostCommon = Object.keys(languageCounts).reduce((a, b) => 
+        languageCounts[a] > languageCounts[b] ? a : b
+    );
+    
+    html = `
+        <div class="history-card mb-4">
+            <div class="row text-center">
+                <div class="col-md-4">
+                    <h3 class="text-danger fw-bold">${history.length}</h3>
+                    <p class="mb-0">Total Quizzes</p>
+                </div>
+                <div class="col-md-4">
+                    <h3 class="text-danger fw-bold">${mostCommon}</h3>
+                    <p class="mb-0">Most Common</p>
+                </div>
+                <div class="col-md-4">
+                    <h3 class="text-danger fw-bold">${new Set(topLanguages).size}</h3>
+                    <p class="mb-0">Different Languages</p>
+                </div>
+            </div>
+        </div>
+    ` + html;
+    
+    content.innerHTML = html;
+}
+
+function clearHistory() {
+    if (confirm('Are you sure you want to clear all quiz history? This cannot be undone.')) {
+        localStorage.removeItem('lavaQuizHistory');
+        showHistory(); // Refresh the view
+    }
+}
+
+function backToHome() {
+    document.getElementById('history').classList.add('hidden');
+    document.getElementById('landing').classList.remove('hidden');
+}
+
+function toggleDarkMode() {
+    document.body.classList.toggle('dark-mode');
+    const isDarkMode = document.body.classList.contains('dark-mode');
+    const icon = document.querySelector('#darkModeToggle i');
+    
+    if (isDarkMode) {
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+        localStorage.setItem('darkMode', 'enabled');
+    } else {
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+        localStorage.setItem('darkMode', 'disabled');
+    }
+}
+
+function loadDarkModePreference() {
+    const darkMode = localStorage.getItem('darkMode');
+    if (darkMode === 'enabled') {
+        document.body.classList.add('dark-mode');
+        const icon = document.querySelector('#darkModeToggle i');
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
     }
 }
 
