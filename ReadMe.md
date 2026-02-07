@@ -11,7 +11,7 @@ A beautiful, responsive web app that helps users discover their primary **love l
 
 ## 🚀 Live Demo
 
-**[View Live App on Vercel](https://lava-rose.vercel.app)** | **[GitHub Pages](https://nyakiochristine.github.io/lava/)**
+**[View Live App on Vercel](https://lava-henna.vercel.app/)** | **[GitHub Pages](https://nyakiochristine.github.io/lava/)**
 
 ## 📚 Documentation
 
