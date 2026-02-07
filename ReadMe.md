@@ -1,7 +1,7 @@
 ## 🚀 Deployment
 
 The app is deployed on:
-- **Vercel** (Primary): [lava-love-quiz.vercel.app](https://lava-rose.vercel.app/)
+- **Vercel** (Primary): [lava-love-quiz.vercel.app](https://lava-henna.vercel.app/s)
 - **GitHub Pages** (Backup): [nyakiochristine.github.io/lava](https://nyakiochristine.github.io/lava/)
 
 # Lava 💖 Love Language Quiz
@@ -16,8 +16,8 @@ A beautiful, responsive web app that helps users discover their primary **love l
 
 ## 📚 Documentation
 
-- **[📖 Case Study](https://docs.google.com/document/d/1TL383AcKgr_djYaIPpk6lTDPO6KHqZtfnDD4Ldxah4Q/edit?tab=t.0)** - Deep dive into design decisions, user research, and development process
-- **[🎨 Design Documents](https://docs.google.com/document/d/1hWWqE0OKt3NpcPWAF0YkDPZd_cPw064fUlIvjV1UzIQ/edit?usp=sharing)** - Wireframes, mockups, and design system
+- **[📖 Case Study](https://docs.google.com/document/d/1qwQpH5U-M9ehha2ArXrUYzDpJpnkNHeZPmFf3-a-Lhg/edit?usp=sharing)** - Deep dive into our case study, and development process
+- **[🎨 Design Documents](https://docs.google.com/document/d/1A3VBD54aI9YoOdWkvHV0sKCef7lWKe_-TxFHehOf3F4/edit?usp=sharing)** - Wireframes, mockups, and design system
 
 ## 📝 Case Study Summary
 
@@ -44,13 +44,11 @@ A beautiful, responsive web app that helps users discover their primary **love l
 - **Animated results** with confetti celebration 🎉
 - **Font Awesome icons** & personalized love language descriptions
 - **Shareable results** (native share API + clipboard fallback)
-- **Partner mode toggle** (ready for future couple comparison)
 
 ### New Features (Feb 2026)
 - **🌙 Dark Mode Toggle** - Smooth theme switching with localStorage persistence
 - **📊 Quiz History Tracker** - Save multiple attempts, view trends, and track emotional patterns
 - **📈 Statistics Dashboard** - Most common language, total quizzes, and consistency metrics
-- **⏰ Timestamps** - Track when you took each quiz for pattern analysis
 
 ### Technical Features
 - **Mobile-first responsive** design with Bootstrap 5
