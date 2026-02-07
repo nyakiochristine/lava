@@ -8,7 +8,6 @@ The app is deployed on:
 
 A beautiful, responsive web app that helps users discover their primary **love language** through 10 engaging questions. Built with HTML, CSS, Bootstrap, and vanilla JavaScript.
 
-[![Lava Demo](screenshot/img3.png)](https://nyakiochristine.github.io/lava/)
 
 ## 🚀 Live Demo
 
