@@ -10,6 +10,61 @@
 }
 
 
+/* DARK MODE */
+[data-theme="dark"] {
+    --coral: #FF8A80;
+    --soft-pink: #FFAB91;
+    --blush: #FFCCBC;
+    --cream: #FFEBEE;
+    --rose-mute: #F8BBD9;
+    --white-text: #1A0000;
+    --dark-text: #B71C1C;
+}
+
+[data-theme="dark"] body {
+    background: linear-gradient(135deg, #1A0000, #2D0000);
+    color: var(--white-text);
+}
+
+[data-theme="dark"] #landing {
+    background: linear-gradient(135deg, #370000, #550000);
+}
+
+[data-theme="dark"] .question-card,
+[data-theme="dark"] #resultsChart {
+    background: rgba(0,0,0,0.85);
+    border: 1px solid rgba(255,138,128,0.3);
+    color: white;
+}
+
+[data-theme="dark"] footer {
+    background: #370000;
+}
+
+/* Toggle Button */
+#darkModeToggle {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+}
+
+#darkModeToggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+[data-theme="dark"] #darkModeToggle i {
+    color: #FFD700 !important; 
+}
+
+
+
 * {
     margin: 0;
     padding: 0;
