@@ -3,118 +3,501 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>💖 Lava - Love Language Quiz | LoveLink Romance Hub</title>
-    <!-- Design Doc Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Roboto:wght@300;400;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <!-- Bootstrap & Icons -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!--our css file linked here -->
-    <link rel="stylesheet" href="index.css">
+    <title>Lava - Love Language Quiz | LoveLink Romance Hub</title>
 </head>
 <body>
-    <!-- Navbar -->
-   <!-- Replace your navbar section with this -->
-<header>
-    <nav class="navbar navbar-expand-lg navbar-dark" aria-label="Main navigation">
-        <div class="container">
-            <a class="navbar-brand fs-2 fw-bold animate-heart" href="#">💖 Lava</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#quiz">Quiz</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#stories">Stories</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                    <!-- DARK MODE TOGGLE -->
-                    <li class="nav-item">
-                        <button id="darkModeToggle" class="btn btn-outline-light ms-2" aria-label="Toggle dark mode">
-                            <i class="fas fa-moon"></i>
-                        </button>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-</header>
-
+    <!-- Navigation -->
+    <header>
+        <nav aria-label="Main navigation">
+            <a href="#home">💖 Lava</a>
+            <ul>
+                <li><a href="#quiz">Quiz</a></li>
+                <li><a href="#stories">Stories</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
     <!-- Main Content -->
     <main>
-        <!--landing -->
-        <section id="landing" class="d-flex align-items-center text-center text-white">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-8 hero-content">
-                        <!-- image -->
-                        <img src="screenshot/pexels-shkrabaanthony-5493199 (1).jpg" 
-                             alt="Romantic couple embracing at sunset" 
-                             class="img-fluid hero-image">
-                        
-                        <h1 class="display-3  mb-4 animate-heart">💖 Lava - Love Language Quiz</h1>
-                        <p class="lead mb-5 fs-3">Discover your love language in 10 quick questions. Perfect for couples, friends, or self-discovery! Solve romance mismatches by understanding Words of Affirmation, Acts of Service, Gifts, Quality Time, or Physical Touch.</p>
-                        
-                        <button id="startBtn" class="btn btn-lg btn-danger px-5 py-3 fs-4 mb-4" aria-label="Start the love language quiz">Start Quiz</button>
-                        
-                        <div class="form-check form-switch d-flex justify-content-center align-items-center">
-                            <input class="form-check-input" type="checkbox" id="partnerMode" aria-label="Toggle partner mode for couples quiz">
-                            <label class="form-check-label text-white fs-4 ms-3" for="partnerMode">Quiz with Partner</label>
-                        </div>
-                    </div>
+        <!-- Hero/Landing Section -->
+        <section id="home" aria-labelledby="hero-heading">
+            <div>
+                <img src="screenshot/pexels-shkrabaanthony-5493199 (1).jpg" 
+                     alt="Romantic couple embracing at sunset">
+                
+                <header>
+                    <h1 id="hero-heading">💖 Lava - Love Language Quiz</h1>
+                    <p>Discover your love language in 10 quick questions. Perfect for couples, friends, or self-discovery! Solve romance mismatches by understanding Words of Affirmation, Acts of Service, Gifts, Quality Time, or Physical Touch.</p>
+                </header>
+                
+                <button aria-label="Start the love language quiz">Start Quiz</button>
+                
+                <div>
+                    <input type="checkbox" id="partnerMode" aria-label="Toggle partner mode for couples quiz">
+                    <label for="partnerMode">Quiz with Partner</label>
                 </div>
             </div>
         </section>
 
         <!-- Quiz Section -->
-        <article id="quiz" class="min-vh-100 py-5 hidden">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-8">
-                        <div class="progress mb-4" style="height: 10px;" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">
-                            <div id="progressBar" class="progress-bar bg-danger" style="width: 10%"></div>
-                        </div>
-                        <div id="quizContainer">
-                            <!-- Questions populated by script.js -->
-                        </div>
-                        <div class="text-center mt-5">
-                            <button id="prevBtn" class="btn btn-outline-secondary me-3 hidden" aria-label="Go to previous question">Previous</button>
-                            <button id="nextBtn" class="btn btn-danger px-4" aria-label="Go to next question">Next</button>
-                        </div>
+        <article id="quiz" aria-labelledby="quiz-heading">
+            <header>
+                <h2 id="quiz-heading">Love Language Quiz</h2>
+                <div class="progress-container">
+                    <span>Progress: 0/10</span>
+                    <div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="10" aria-label="Quiz progress">
+                        <div aria-label="Progress bar"></div>
                     </div>
                 </div>
-            </div>
+            </header>
+
+            <form>
+                <!-- Question 1 -->
+                <section aria-labelledby="q1-heading">
+                    <h3 id="q1-heading">1. How do you prefer to receive appreciation?</h3>
+                    <fieldset>
+                        <legend>Choose one:</legend>
+                        <ul>
+                            <li>
+                                <label>
+                                    <input type="radio" name="q1" value="0">
+                                    Verbal compliments and encouragement
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="radio" name="q1" value="1">
+                                    Help with chores or tasks
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="radio" name="q1" value="2">
+                                    Small thoughtful gifts
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="radio" name="q1" value="3">
+                                    Quality time together
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="radio" name="q1" value="4">
+                                    Physical affection like hugs
+                                </label>
+                            </li>
+                        </ul>
+                    </fieldset>
+                </section>
+
+                <!-- Question 2 -->
+                <section aria-labelledby="q2-heading">
+                    <h3 id="q2-heading">2. What makes you feel most loved by a partner?</h3>
+                    <fieldset>
+                        <legend>Choose one:</legend>
+                        <ul>
+                            <li>
+                                <label>
+                                    <input type="radio" name="q2" value="0">
+                                    Hearing 'I love you' and specific praise
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="radio" name="q2" value="1">
+                                    When they cook dinner or run errands
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="radio" name="q2" value="2">
+                                    Surprise presents that show they listened
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="radio" name="q2" value="3">
+                                    Undivided attention during conversations
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="radio" name="q2" value="4">
+                                    Cuddling or holding hands
+                                </label>
+                            </li>
+                        </ul>
+                    </fieldset>
+                </section>
+
+                <!-- Question 3 -->
+                <section aria-labelledby="q3-heading">
+                    <h3 id="q3-heading">3. When you're feeling down, what cheers you up most?</h3>
+                    <fieldset>
+                        <legend>Choose one:</legend>
+                        <ul>
+                            <li>
+                                <label>
+                                    <input type="radio" name="q3" value="0">
+                                    Encouraging words from loved ones
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="radio" name="q3" value="1">
+                                    Someone helping with my responsibilities
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="radio" name="q3" value="2">
+                                    A small gift or treat
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="radio" name="q3" value="3">
+                                    Spending focused time together
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="radio" name="q3" value="4">
+                                    Physical comfort like a hug
+                                </label>
+                            </li>
+                        </ul>
+                    </fieldset>
+                </section>
+
+                <!-- Question 4 -->
+                <section aria-labelledby="q4-heading">
+                    <h3 id="q4-heading">4. How do you feel most appreciated at work or home?</h3>
+                    <fieldset>
+                        <legend>Choose one:</legend>
+                        <ul>
+                            <li>
+                                <label>
+                                    <input type="radio" name="q4" value="0">
+                                    Public recognition or thank you notes
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="radio" name="q4" value="1">
+                                    Team members helping with my workload
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="radio" name="q4" value="2">
+                                    Thoughtful gifts or bonuses
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="radio" name="q4" value="3">
+                                    Meaningful one-on-one discussions
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="radio" name="q4" value="4">
+                                    High fives or supportive touches
+                                </label>
+                            </li>
+                        </ul>
+                    </fieldset>
+                </section>
+
+                <!-- Question 5 -->
+                <section aria-labelledby="q5-heading">
+                    <h3 id="q5-heading">5. What's your favorite way to celebrate special occasions?</h3>
+                    <fieldset>
+                        <legend>Choose one:</legend>
+                        <ul>
+                            <li>
+                                <label>
+                                    <input type="radio" name="q5" value="0">
+                                    Heartfelt toasts and speeches
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="radio" name="q5" value="1">
+                                    Someone else handling all the planning
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="radio" name="q5" value="2">
+                                    Beautiful wrapping and perfect gifts
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="radio" name="q5" value="3">
+                                    Extended quality time with loved ones
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="radio" name="q5" value="4">
+                                    Lots of hugs and physical closeness
+                                </label>
+                            </li>
+                        </ul>
+                    </fieldset>
+                </section>
+
+                <!-- Question 6 -->
+                <section aria-labelledby="q6-heading">
+                    <h3 id="q6-heading">6. When you do something nice for someone, what response makes you happiest?</h3>
+                    <fieldset>
+                        <legend>Choose one:</legend>
+                        <ul>
+                            <li>
+                                <label>
+                                    <input type="radio" name="q6" value="0">
+                                    Them verbally expressing gratitude
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="radio" name="q6" value="1">
+                                    Them returning the favor later
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="radio" name="q6" value="2">
+                                    Them giving me a thoughtful gift
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="radio" name="q6" value="3">
+                                    Them spending time with me
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="radio" name="q6" value="4">
+                                    Them giving me a hug or pat
+                                </label>
+                            </li>
+                        </ul>
+                    </fieldset>
+                </section>
+
+                <!-- Question 7 -->
+                <section aria-labelledby="q7-heading">
+                    <h3 id="q7-heading">7. What's the best way to apologize to you?</h3>
+                    <fieldset>
+                        <legend>Choose one:</legend>
+                        <ul>
+                            <li>
+                                <label>
+                                    <input type="radio" name="q7" value="0">
+                                    Sincere words explaining they're sorry
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="radio" name="q7" value="1">
+                                    Making it up to me with helpful actions
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="radio" name="q7" value="2">
+                                    A peace offering gift
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="radio" name="q7" value="3">
+                                    Quality time to talk it through
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="radio" name="q7" value="4">
+                                    Physical affection and makeup cuddles
+                                </label>
+                            </li>
+                        </ul>
+                    </fieldset>
+                </section>
+
+                <!-- Question 8 -->
+                <section aria-labelledby="q8-heading">
+                    <h3 id="q8-heading">8. How do you recharge after a long day?</h3>
+                    <fieldset>
+                        <legend>Choose one:</legend>
+                        <ul>
+                            <li>
+                                <label>
+                                    <input type="radio" name="q8" value="0">
+                                    Positive conversations with friends
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="radio" name="q8" value="1">
+                                    Having household tasks done for me
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="radio" name="q8" value="2">
+                                    Retail therapy with small purchases
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="radio" name="q8" value="3">
+                                    Deep conversations or shared activities
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="radio" name="q8" value="4">
+                                    Physical relaxation like massages
+                                </label>
+                            </li>
+                        </ul>
+                    </fieldset>
+                </section>
+
+                <!-- Question 9 -->
+                <section aria-labelledby="q9-heading">
+                    <h3 id="q9-heading">9. What makes a date night perfect for you?</h3>
+                    <fieldset>
+                        <legend>Choose one:</legend>
+                        <ul>
+                            <li>
+                                <label>
+                                    <input type="radio" name="q9" value="0">
+                                    Flirty compliments throughout
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="radio" name="q9" value="1">
+                                    Everything planned so I can relax
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="radio" name="q9" value="2">
+                                    Thoughtful little gifts or treats
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="radio" name="q9" value="3">
+                                    Meaningful conversation all night
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="radio" name="q9" value="4">
+                                    Lots of touching and closeness
+                                </label>
+                            </li>
+                        </ul>
+                    </fieldset>
+                </section>
+
+                <!-- Question 10 -->
+                <section aria-labelledby="q10-heading">
+                    <h3 id="q10-heading">10. What's your ideal morning routine with a partner?</h3>
+                    <fieldset>
+                        <legend>Choose one:</legend>
+                        <ul>
+                            <li>
+                                <label>
+                                    <input type="radio" name="q10" value="0">
+                                    Sweet morning affirmations
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="radio" name="q10" value="1">
+                                    Making me coffee/breakfast
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="radio" name="q10" value="2">
+                                    Small morning surprises/gifts
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="radio" name="q10" value="3">
+                                    Cuddling and talking in bed
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="radio" name="q10" value="4">
+                                    Physical intimacy first thing
+                                </label>
+                            </li>
+                        </ul>
+                    </fieldset>
+                </section>
+
+                <div>
+                    <button type="button" aria-label="Go to previous question">Previous</button>
+                    <button type="submit" aria-label="Finish quiz">Finish Quiz</button>
+                </div>
+            </form>
         </article>
 
         <!-- Results Section -->
-        <section id="results" class="min-vh-100 py-5 hidden bg-light">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-10">
-                        <div class="text-center mb-5">
-                            <h2 class="display-4 fw-bold text-danger mb-4">Your Love Language is...</h2>
-                            <div id="resultText" class="fs-2 fw-bold mb-4 text-coral"></div>
-                        </div>
-                        <div id="resultsChart" class="mb-5"></div>
-                        <div class="text-center">
-                            <button id="shareBtn" class="btn btn-outline-danger btn-lg px-5 me-3" aria-label="Share your love language results">
-                                <i class="fas fa-share-alt me-2"></i>Share Results
-                            </button>
-                            <button id="restartBtn" class="btn btn-outline-danger btn-lg px-5" aria-label="Take the quiz again">Take Quiz Again</button>
-                        </div>
-                    </div>
+        <section id="results" aria-labelledby="results-heading">
+            <header>
+                <h2 id="results-heading">Your Love Language is...</h2>
+                <div id="result-language" aria-live="polite">
+                    <p>Complete the quiz to see your results!</p>
                 </div>
+            </header>
+
+            <section id="results-chart">
+                <h3>Your Love Language Scores</h3>
+                <p>Scores will appear here after completing the quiz.</p>
+                <ul>
+                    <li>Words of Affirmation: <span>0/10</span></li>
+                    <li>Acts of Service: <span>0/10</span></li>
+                    <li>Receiving Gifts: <span>0/10</span></li>
+                    <li>Quality Time: <span>0/10</span></li>
+                    <li>Physical Touch: <span>0/10</span></li>
+                </ul>
+            </section>
+
+            <div>
+                <button aria-label="Share your love language results">
+                    Share Results
+                </button>
+                <button type="button" aria-label="Take the quiz again">
+                    Take Quiz Again
+                </button>
             </div>
         </section>
     </main>
 
-    <!-- Semantic Footer -->
-    <footer class="py-4 text-center">
-        <p class="mb-0">&copy; 2026 Lava - LoveLink Romance Hub. Made with ❤️ in Nairobi. | <a href="#privacy" class="text-white text-decoration-none">Privacy</a> | <a href="#terms" class="text-white text-decoration-none">Terms</a></p>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Lava - LoveLink Romance Hub. Made with ❤️ in Nairobi. | 
+           <a href="#privacy">Privacy</a> | 
+           <a href="#terms">Terms</a>
+        </p>
     </footer>
-
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="script.js"></script>
 </body>
 </html>
