@@ -239,6 +239,104 @@ body {
     color: #FF6F61;
 }
 
+
+/* Quiz Section Container */
+.quiz-section { max-width: 800px; margin: 2rem auto; padding: 1rem; }
+
+.question-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(255,111,97,0.2);
+  border-top: 4px solid #FF6F61;
+}
+
+.progress-container {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: #fff5f5;
+  border-radius: 8px;
+}
+
+.progress-title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.5rem;
+  color: #FF6F61;
+  margin: 0 0 1rem 0;
+}
+
+.progress-bar-container {
+  height: 10px;
+  background: #ffe;
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 0 auto;
+  max-width: 300px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #FF6F61;
+  width: 10%;
+}
+
+.question-group {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  border-left: 4px solid #FF6F61;
+  background: #fafafa;
+}
+
+.question-group h2 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.8rem;
+  color: #FF6F61;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+legend {
+  font-weight: bold;
+  color: #FF6F61;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.options-grid {
+  display: grid;
+  gap: 0.75rem;
+  list-style: none;
+  padding: 0;
+}
+
+.option {
+  padding: 1rem;
+  background: white;
+  border: 2px solid #eee;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.option:hover {
+  border-color: #FF6F61;
+  background: #fff5f5;
+}
+
+.quiz-nav {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #eee;
+}
+
+
+
+
+
+
 /* resposive design */
 @media (max-width: 768px) {
 
@@ -272,7 +370,7 @@ body {
   }
 }
 
-/* MOBILE RESPONSIVE - Phone Only (480px and down) */
+/* MOBILE RESPONSIVE */
 @media (max-width: 480px) {
   .header {
     padding: 1rem;
@@ -301,6 +399,17 @@ body {
   .hero__content {
     padding: 1.5rem;
   }
+
+   .question-card 
+   { padding: 1.5rem;
+     margin: 0 0.5rem;
+     }
+  .options-grid {
+     gap: 0.5rem; 
+    }
+  .quiz-nav {
+     flex-direction: column; 
+    }
 
 }
 
