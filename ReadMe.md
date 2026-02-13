@@ -1,7 +1,7 @@
 ## 🚀 Deployment
 
 The app is deployed on:
-- **Vercel** (Primary): [lava-love-quiz.vercel.app](https://lava-henna.vercel.app/s)
+- **Vercel** (Primary): [lava-love-quiz.vercel.app](https://lava-henna.vercel.app/)
 - **GitHub Pages** (Backup): [nyakiochristine.github.io/lava](https://nyakiochristine.github.io/lava/)
 
 # Lava 💖 Love Language Quiz
