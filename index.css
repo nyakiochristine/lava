@@ -510,25 +510,6 @@ legend {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   
 header .navbar {
     background: rgba(255, 111, 97, 0.98) !important; 
@@ -694,19 +675,47 @@ h1, h2, h3, .display-4, .navbar-brand {
     margin: 2rem 0;
 }
 
-footer { 
-    background: var(--coral); 
-    color: white; 
-    padding: 2rem 0;
+
+.footer {
+  background: linear-gradient(135deg, #FF6F61, #FF9A8D);
+  color: white;
+  text-align: center;
+  padding: 2rem 1rem;
+  margin-top: 3rem;
 }
+.footer a {
+  color: #FFD700;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
 
 /*responisveness */
 @media (max-width: 768px) {
-    #landing { padding-top: 75px !important; padding-bottom: 80px; }
-    .hero-image { max-width: 300px; }
-    .navbar-brand { font-size: 1.5rem !important; }
-    .nav-link { font-size: 1rem !important; }
-    h1.display-3 { font-size: 3rem !important; }
+    #landing { padding-top: 75px !important;
+         padding-bottom: 80px;
+         }
+    .hero-image {
+         max-width: 300px;
+         }
+    .navbar-brand { 
+        font-size: 1.5rem !important; 
+    }
+    .nav-link { 
+        font-size: 1rem !important; 
+    }
+    h1.display-3 { 
+        font-size: 3rem !important; 
+    }
+
+    .footer {
+    padding: 1.5rem 0.5rem;
+    font-size: 0.95rem;
+  }
 }
 
 @media (max-width: 576px) {
