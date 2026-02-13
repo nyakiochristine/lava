@@ -26,26 +26,24 @@ A beautiful, responsive web app that helps users discover their primary **love l
 - Scientific 10-question assessment covering all 5 love languages
 - Intuitive progress tracking and instant visual results
 - History tracking to monitor emotional patterns over time
-- Dark mode for accessibility and user preference
 - Responsive design that works seamlessly across all devices
 
 **Impact:** 
 - Average session time: 2.5 minutes
 - Users return to check history an average of 3 times
 
-**Tech Highlights:** Built with vanilla JavaScript for optimal performance, localStorage for data persistence, and Bootstrap 5 for rapid responsive development. No external dependencies for core functionality.
+**Tech Highlights:** Built the site using HTML and CSS
 
 ##  Features
 
 ### Core Functionality
 - **10 scientifically-inspired questions** covering all 5 love languages
 - **Interactive quiz flow** with progress tracking & navigation
-- **Animated results** with confetti celebration 🎉
+- **Animated results** with confetti celebration 
 - **Font Awesome icons** & personalized love language descriptions
 - **Shareable results** (native share API + clipboard fallback)
 
 ### New Features (Feb 2026)
-- **🌙 Dark Mode Toggle** - Smooth theme switching with localStorage persistence
 - **📊 Quiz History Tracker** - Save multiple attempts, view trends, and track emotional patterns
 - **📈 Statistics Dashboard** - Most common language, total quizzes, and consistency metrics
 
@@ -57,7 +55,7 @@ A beautiful, responsive web app that helps users discover their primary **love l
 
 ##  Tech Stack
 
-HTML5 | CSS3 | Bootstrap 5.3 | Vanilla JavaScript | Font Awesome 6
+HTML5 | CSS3 | Font Awesome 6
 
 
 ##  Quick Start
@@ -72,16 +70,16 @@ open index.html
 # or
 live-server .  # if you have live-server
 ```
-
 ## 📁 File Structure
-```
-lava-love-quiz/
-├── index.html      # Main app structure with semantic sections
-├── index.css       # Custom styles with CSS variables for theming
-├── script.js       # Quiz logic, history tracking, dark mode
-├── screenshot/     # App screenshots and demos
-└── README.md       # You're reading it!
-```
+
+| File/Folder | Purpose |
+|-------------|---------|
+| `index.html` | Landing page with hero section & features |
+| `index.css` | Single responsive CSS file (mobile-first) **in root** |
+| `pages/quiz.html` | Interactive 10-question love language quiz |
+| `pages/results.html` | Results visualization with progress bars |
+| `screenshot/` | Hero background images |
+
 
 ## 📄 License
 
@@ -99,7 +97,6 @@ MIT License - Feel free to use, modify, and share!
 
 ---
 
-⭐ **Found this helpful?** Star the repo and share with your friends!
 
 
 
