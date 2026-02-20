@@ -15,7 +15,7 @@ A beautiful, responsive web app that helps users discover their primary **love l
 
 ## 📚 Documentation
 
-- **[📖 Case Study](https://docs.google.com/document/d/1qwQpH5U-M9ehha2ArXrUYzDpJpnkNHeZPmFf3-a-Lhg/edit?usp=sharing)** - Deep dive into our case study, and development process
+- **[📖Christine Case Study](https://techbytesbykris.substack.com/p/building-lava-a-love-language-quiz?r=u32rt&utm_campaign=post&utm_medium=web&triedRedirect=true)** - Deep dive into our case study, and development process
 - **[🎨 Design Documents](https://docs.google.com/document/d/1A3VBD54aI9YoOdWkvHV0sKCef7lWKe_-TxFHehOf3F4/edit?usp=sharing)** - Wireframes, mockups, and design system
 
 ## 📝 Case Study Summary
