@@ -255,15 +255,30 @@ body {
   border-top: 4px solid #FF6F61;
 }
 
-.progress-container {
-  text-align: center;
-  margin-bottom: 2rem;
-  padding: 1.5rem;
-  background: #FF6F61; 
-  color: white; 
-  border-radius: 8px;
-  border: 3px solid #FF9A8D;
+
+
+/* --- FIXED PROGRESS TRACK --- */
+
+
+
+.progress-fill {
+    background: #FF6F61; /* Lava Red */
+    height: 100%;
+    width: 0%;
+    transition: width 0.3s ease;
+    border-radius: 10px;
 }
+
+.progress-bar-container {
+        background: #eee;
+        width: 100%;
+        height: 10px;
+        border-radius: 5px;
+        margin-top: 10px;
+    }
+    
+
+
 
 .progress-title {
   font-family: 'Roboto', sans-serif  !important;
@@ -274,24 +289,44 @@ body {
   text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
 
-.progress-bar-container {
-  height: 16px;
-  background: #ffe;
-  border-radius: 8px;
-  overflow: hidden;
-  margin: 0.5rem auto 0;
-  max-width: 350px;
-  border: 2px solid white;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 
+
+
+
+
+
+
+
+
+/* Highlight the Selected Answer */
+.options-grid {
+    list-style: none;
+    padding: 0;
+}
+
+.option {
+    margin-bottom: 10px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    transition: all 0.2s ease;
 }
 
 
+.option:has(input[type="radio"]:checked) {
+    border-color: #ff4d6d;
+    background-color: #fff0f3; /* Light pink tint */
+    transform: scale(1.02);
+}
 
-.progress-fill {
-  height: 100%;
-  background: #FF6F61;
-  width: 10%;
+.option label {
+    display: block;
+    padding: 15px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.option input[type="radio"] {
+    margin-right: 10px;
 }
 
 .question-group {
