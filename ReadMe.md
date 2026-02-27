@@ -1,13 +1,13 @@
 ## 🚀 Deployment
 
 The app is deployed on:
+
 - **Vercel** (Primary): [lava-love-quiz.vercel.app](https://lava-henna.vercel.app/)
 - **GitHub Pages** (Backup): [nyakiochristine.github.io/lava](https://nyakiochristine.github.io/lava/)
 
 # Lava 💖 Love Language Quiz
 
 A beautiful, responsive web app that helps users discover their primary **love language** through 10 engaging questions. Built with HTML, CSS, Bootstrap, and vanilla JavaScript.
-
 
 ## 🚀 Live Demo
 
@@ -23,42 +23,363 @@ A beautiful, responsive web app that helps users discover their primary **love l
 **Problem:** People struggle to understand and communicate their emotional needs in relationships. Existing love language assessments are often lengthy, outdated, or lack modern UX.
 
 **Solution:** Lava is a modern, mobile-first quiz application that makes discovering your love language quick (under 3 minutes), enjoyable, and shareable. The app features:
+
 - Scientific 10-question assessment covering all 5 love languages
 - Intuitive progress tracking and instant visual results
 - History tracking to monitor emotional patterns over time
 - Responsive design that works seamlessly across all devices
 
-**Impact:** 
+**Impact:**
+
 - Average session time: 2.5 minutes
 - Users return to check history an average of 3 times
 
 **Tech Highlights:** Built the site using HTML and CSS
 
-##  Features
+## Features
 
 ### Core Functionality
+
 - **10 scientifically-inspired questions** covering all 5 love languages
 - **Interactive quiz flow** with progress tracking & navigation
-- **Animated results** with confetti celebration 
+- **Animated results** with confetti celebration
 - **Font Awesome icons** & personalized love language descriptions
 - **Shareable results** (native share API + clipboard fallback)
 
 ### New Features (Feb 2026)
+
 - **📊 Quiz History Tracker** - Save multiple attempts, view trends, and track emotional patterns
 - **📈 Statistics Dashboard** - Most common language, total quizzes, and consistency metrics
 
 ### Technical Features
+
 - **Mobile-first responsive** design with Bootstrap 5
 - **localStorage** for data persistence (results + preferences)
 - **Smooth animations** & hover effects
 - **Zero external API dependencies** - works offline after first load
 
-##  Tech Stack
+## Tech Stack
 
-HTML5 | CSS3 | Font Awesome 6
+HTML5 | CSS3 | Vanilla JavaScript (ES6+) | Font Awesome 6
 
+## 🎯 JavaScript Implementation
 
-##  Quick Start
+### Architecture Overview
+
+The application uses a **modular, component-based architecture** with three main JavaScript modules:
+
+### 1. **quiz.js** - Quiz Logic & State Management
+
+**Core Responsibilities:**
+
+- Multi-step form navigation with validation
+- Progress tracking and UI updates
+- Answer collection and score calculation
+- Auto-save and recovery for incomplete quizzes
+- Edge case handling (empty forms, missing data)
+
+**Key Features:**
+
+#### State Management
+
+```javascript
+// Application state
+let currentStep = 1;
+const totalQuestions = 10;
+```
+
+#### Data Flow
+
+1. **User Input** → Radio button selection
+2. **Validation** → Check if question is answered
+3. **State Update** → Increment currentStep
+4. **DOM Update** → Show next question, update progress bar
+5. **Storage** → Auto-save to localStorage for recovery
+6. **Calculation** → Tally scores by love language category
+7. **Persistence** → Save final results to localStorage
+8. **Navigation** → Redirect to results page
+
+#### Edge Cases Handled
+
+- ✅ Empty form submission (alerts user)
+- ✅ Incomplete quiz recovery (24-hour window)
+- ✅ Page refresh protection (beforeunload warning)
+- ✅ Missing DOM elements (null checks)
+- ✅ Navigation bounds (prevent step < 1 or > 10)
+- ✅ Double submission prevention (disable button)
+- ✅ Keyboard navigation (arrow keys)
+
+### 2. **results.js** - Results Display & History
+
+**Core Responsibilities:**
+
+- Parse and validate quiz results
+- Dynamic score visualization with animations
+- History tracking and statistics
+- Share functionality
+- Error handling for corrupted data
+
+**Data Flow:**
+
+1. **Fetch Data** → Load from localStorage
+2. **Validate** → Check data structure and integrity
+3. **Calculate** → Determine primary love language
+4. **Render** → Update DOM with scores and descriptions
+5. **Animate** → Stagger progress bar animations
+6. **History** → Display past results and trends
+7. **Share** → Enable result sharing via native API or clipboard
+
+#### History Management
+
+```javascript
+// History structure stored in localStorage
+{
+  date: "2026-02-27T10:30:00.000Z",
+  primaryLanguage: "Quality Time",
+  scores: { "0": 2, "1": 1, "2": 0, "3": 5, "4": 2 },
+  timestamp: 1709032200000
+}
+```
+
+#### Edge Cases Handled
+
+- ✅ Missing results data (friendly error message)
+- ✅ Corrupted JSON (parse error handling)
+- ✅ Invalid score ranges (validation)
+- ✅ Empty history (graceful degradation)
+
+### 3. **auth.js** - Form Validation & User Simulation
+
+**Core Responsibilities:**
+
+- Real-time input validation
+- Password strength checking
+- Form submission handling
+- Mock authentication (localStorage-based)
+- Error messaging and user feedback
+
+**Validation Rules:**
+
+- Email: Must match valid email pattern
+- Password: Minimum 6 characters
+- Confirm Password: Must match password
+- Required fields: Must not be empty
+- Terms: Must be accepted
+
+**Data Flow:**
+
+1. **Input** → User types in form field
+2. **Blur Event** → Trigger validation on focus loss
+3. **Validate** → Check against rules
+4. **Feedback** → Show error or success indicator
+5. **Submit** → Validate all fields
+6. **Process** → Store in localStorage (mock DB)
+7. **Session** → Create user session
+8. **Redirect** → Navigate to quiz page
+
+## 🗄️ Data Architecture
+
+### LocalStorage Structure
+
+```javascript
+// Current quiz results
+lava_results: {
+  scores: { "0": 2, "1": 3, "2": 1, "3": 4, "4": 0 },
+  timestamp: "2026-02-27T10:30:00.000Z",
+  totalQuestions: 10
+}
+
+// Quiz progress (auto-save)
+lava_quiz_progress: {
+  answers: { "q1": "3", "q2": "4" },
+  currentStep: 3,
+  timestamp: "2026-02-27T10:25:00.000Z"
+}
+
+// Quiz history
+lava_quiz_history: [{
+  date: "2026-02-27T10:30:00.000Z",
+  primaryLanguage: "Quality Time",
+  scores: { "0": 2, "1": 1, "2": 0, "3": 5, "4": 2 },
+  timestamp: 1709032200000
+}]
+
+// User database (mock)
+lava_users: [{
+  email: "user@example.com",
+  password: "hashed_password",
+  firstName: "John",
+  lastName: "Doe",
+  createdAt: "2026-02-27T09:00:00.000Z"
+}]
+
+// Current session
+lava_current_user: {
+  email: "user@example.com",
+  firstName: "John",
+  lastName: "Doe",
+  loginTime: "2026-02-27T10:00:00.000Z"
+}
+```
+
+## 🧪 Testing & Quality Assurance
+
+### Manual Testing Performed
+
+#### Quiz Flow
+
+- ✅ All 10 questions display correctly
+- ✅ Navigation between questions works (Previous/Next)
+- ✅ Progress bar updates accurately (0-100%)
+- ✅ Cannot proceed without selecting an answer
+- ✅ Can change answers using Previous button
+- ✅ Final submission requires all questions answered
+- ✅ Results page displays correct scores
+
+#### Edge Cases
+
+- ✅ Empty form submission shows alert
+- ✅ Page refresh during quiz shows recovery prompt
+- ✅ Corrupted localStorage data handled gracefully
+- ✅ Missing DOM elements don't break functionality
+- ✅ Double-click on submit doesn't cause issues
+
+#### Browser Compatibility
+
+- ✅ Chrome 90+
+- ✅ Firefox 88+
+- ✅ Safari 14+
+- ✅ Edge 90+
+- ✅ Mobile browsers (iOS Safari, Chrome Mobile)
+
+#### Responsive Design
+
+- ✅ Desktop (1920px+)
+- ✅ Laptop (1366px)
+- ✅ Tablet (768px)
+- ✅ Mobile (375px - 414px)
+
+## 🚀 Performance Optimizations
+
+- **Lazy animations** - Staggered progress bar animations (100ms intervals)
+- **Debounced validation** - Only validate on blur, not every keystroke
+- **Minimal reflows** - Batch DOM updates together
+- **LocalStorage caching** - Avoid repeated parsing
+- **Event delegation** - Efficient event handling for radio buttons
+
+## 🎤 Core Functionalities to Defend (Presentation)
+
+### Week 6 Implementation Highlights
+
+**What Was Actually Built:**
+
+#### 1. **Auto-Save & Recovery System** (quiz.js)
+
+- Added `saveProgress()` function that auto-saves on every answer selection
+- Implemented `loadSavedProgress()` with 24-hour recovery window
+- Users can resume incomplete quizzes after accidental page refresh
+- **Defend:** Show how refreshing mid-quiz triggers recovery prompt
+
+#### 2. **Comprehensive Form Validation** (quiz.js + auth.js)
+
+- Real-time validation on blur events (email, password, required fields)
+- Multi-layer validation: client-side checks before submission
+- Prevents empty form submissions with user-friendly alerts
+- Navigates to first unanswered question when incomplete
+- **Defend:** Try submitting empty forms - see immediate feedback
+
+#### 3. **History Tracking & Statistics** (results.js)
+
+- Created `displayHistory()` function storing last 20 quiz attempts
+- Calculates statistics: total quizzes, most common love language
+- Visual timeline of past results with dates
+- `saveToHistory()` automatically stores each completed quiz
+- **Defend:** Show multiple quiz attempts and statistics dashboard
+
+#### 4. **Share Functionality** (results.js)
+
+- Implemented native Web Share API with clipboard fallback
+- One-click sharing across platforms (WhatsApp, Twitter, etc.)
+- Automatically detects browser capability and adapts
+- **Defend:** Click share button - works on mobile and desktop
+
+#### 5. **Edge Case Handling** (All files)
+
+- Try-catch blocks prevent crashes from corrupted localStorage
+- Null checks for all DOM element selections
+- Double-submission prevention (button disabled after first click)
+- Navigation bounds enforcement (steps 1-10 only)
+- **Defend:** Show corrupted data recovery, disabled localStorage handling
+
+#### 6. **Keyboard Navigation** (quiz.js)
+
+- Added arrow key event listeners for Previous/Next navigation
+- Power users can complete quiz hands-free
+- Accessibility enhancement for keyboard-only users
+- **Defend:** Complete quiz using only arrow keys
+
+#### 7. **Animated Progress Visualization** (results.js)
+
+- Staggered setTimeout creates cascading bar animations (100ms × index)
+- Dynamic color gradients based on score percentage (70%+ = darker red)
+- Real-time progress bar updates during quiz (currentStep/totalQuestions × 100)
+- **Defend:** Show results page - bars fill sequentially, not all at once
+
+#### 8. **Mock Authentication System** (auth.js - NEW FILE)
+
+- Created complete auth.js with login/signup validation
+- localStorage-based user database simulation
+- Session management across pages
+- Password visibility toggle and strength checking
+- **Defend:** Create account, log in, show session persistence
+
+### Key Implementation Changes Made
+
+**Files Modified:**
+
+- `js/quiz.js` - Added 180+ lines (auto-save, recovery, validation)
+- `js/results.js` - Complete rewrite with 320 lines (history, sharing, animations)
+- `js/auth.js` - NEW FILE with 375 lines (form validation, mock auth)
+
+**Technical Achievements:**
+
+- 930 lines of vanilla JavaScript (no frameworks)
+- 10+ edge cases handled gracefully
+- 5 localStorage data structures designed
+- ES6+ syntax throughout (arrow functions, destructuring, template literals)
+- Zero console errors or broken states
+
+### What to Demo Live:
+
+1. **Start quiz** → Show progress bar updating
+2. **Try empty submission** → Alert appears
+3. **Refresh page mid-quiz** → Recovery prompt shows
+4. **Complete quiz** → Animated results display
+5. **View history** → Statistics dashboard appears
+6. **Share results** → One-click sharing works
+7. **Create account** → Form validation in real-time
+8. **Use arrow keys** → Navigate quiz hands-free
+
+### Questions to Prepare For:
+
+- **"Why no framework?"** → Proves JavaScript fundamentals, faster load times, zero dependencies
+- **"How do you handle state?"** → Single state object with updateUI() function
+- **"What about security?"** → Client-side validation, mock auth (backend would add real security)
+- **"Why localStorage?"** → Prototype-friendly, works offline, no backend needed
+- **"Scale limitations?"** → localStorage ~10MB limit, would move to backend for production
+
+## 🔮 Future Enhancements
+
+### Planned Features
+
+1. **Export to PDF** - Download results as styled PDF
+2. **Comparison Mode** - Compare two users' love languages
+3. **Email Results** - Send results to email (requires backend)
+4. **Social Share Images** - Generate shareable graphics
+5. **Quiz Variations** - Alternative question sets
+6. **Multi-language Support** - Internationalization (i18n)
+
+## Quick Start
 
 1. **Clone/Download** the repo
 2. Open `index.html` in any modern browser
@@ -70,16 +391,21 @@ open index.html
 # or
 live-server .  # if you have live-server
 ```
+
 ## 📁 File Structure
 
-| File/Folder | Purpose |
-|-------------|---------|
-| `index.html` | Landing page with hero section & features |
-| `index.css` | Single responsive CSS file (mobile-first) **in root** |
-| `pages/quiz.html` | Interactive 10-question love language quiz |
-| `pages/results.html` | Results visualization with progress bars |
-| `screenshot/` | Hero background images |
-
+| File/Folder          | Purpose                                               |
+| -------------------- | ----------------------------------------------------- |
+| `index.html`         | Landing page with hero section & features             |
+| `index.css`          | Single responsive CSS file (mobile-first) **in root** |
+| `pages/quiz.html`    | Interactive 10-question love language quiz            |
+| `pages/results.html` | Results visualization with progress bars              |
+| `pages/login.html`   | User login page with validation                       |
+| `pages/signup.html`  | User registration page                                |
+| `js/quiz.js`         | Quiz navigation, validation, and state management     |
+| `js/results.js`      | Results display, history tracking, and sharing        |
+| `js/auth.js`         | Form validation and mock authentication               |
+| `screenshot/`        | Hero background images                                |
 
 ## 📄 License
 
@@ -88,16 +414,13 @@ MIT License - Feel free to use, modify, and share!
 ## 👩‍💻 Authors
 
 **Christine Nyakio Mwangi**  
-📍 Nairobi, Kenya | 📅 February 2026  
+📍 Nairobi, Kenya | 📅 February 2026
+
 - GitHub: [@nyakiochristine](https://github.com/nyakiochristine/)
 
 **Kelvin Ofili Chukwunweike**  
-📍 Lagos, Nigeria | 📅 February 2026  
+📍 Lagos, Nigeria | 📅 February 2026
+
 - GitHub: [@kelvinofili](https://github.com/Kelvin-Ofili)
 
 ---
-
-
-
-
-
