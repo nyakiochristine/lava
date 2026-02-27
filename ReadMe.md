@@ -1,13 +1,13 @@
 ## 🚀 Deployment
 
 The app is deployed on:
+
 - **Vercel** (Primary): [lava-love-quiz.vercel.app](https://lava-henna.vercel.app/)
 - **GitHub Pages** (Backup): [nyakiochristine.github.io/lava](https://nyakiochristine.github.io/lava/)
 
 # Lava 💖 Love Language Quiz
 
 A beautiful, responsive web app that helps users discover their primary **love language** through 10 engaging questions. Built with HTML, CSS, Bootstrap, and vanilla JavaScript.
-
 
 ## 🚀 Live Demo
 
@@ -23,37 +23,42 @@ A beautiful, responsive web app that helps users discover their primary **love l
 **Problem:** People struggle to understand and communicate their emotional needs in relationships. Existing love language assessments are often lengthy, outdated, or lack modern UX.
 
 **Solution:** Lava is a modern, mobile-first quiz application that makes discovering your love language quick (under 3 minutes), enjoyable, and shareable. The app features:
+
 - Scientific 10-question assessment covering all 5 love languages
 - Intuitive progress tracking and instant visual results
 - History tracking to monitor emotional patterns over time
 - Responsive design that works seamlessly across all devices
 
-**Impact:** 
+**Impact:**
+
 - Average session time: 2.5 minutes
 - Users return to check history an average of 3 times
 
 **Tech Highlights:** Built the site using HTML and CSS
 
-##  Features
+## Features
 
 ### Core Functionality
+
 - **10 scientifically-inspired questions** covering all 5 love languages
 - **Interactive quiz flow** with progress tracking & navigation
-- **Animated results** with confetti celebration 
+- **Animated results** with confetti celebration
 - **Font Awesome icons** & personalized love language descriptions
 - **Shareable results** (native share API + clipboard fallback)
 
 ### New Features (Feb 2026)
+
 - **📊 Quiz History Tracker** - Save multiple attempts, view trends, and track emotional patterns
 - **📈 Statistics Dashboard** - Most common language, total quizzes, and consistency metrics
 
 ### Technical Features
+
 - **Mobile-first responsive** design with Bootstrap 5
 - **localStorage** for data persistence (results + preferences)
 - **Smooth animations** & hover effects
 - **Zero external API dependencies** - works offline after first load
 
-##  Tech Stack
+## Tech Stack
 
 HTML5 | CSS3 | Vanilla JavaScript (ES6+) | Font Awesome 6
 
@@ -66,15 +71,17 @@ The application uses a **modular, component-based architecture** with three main
 ### 1. **quiz.js** - Quiz Logic & State Management
 
 **Core Responsibilities:**
+
 - Multi-step form navigation with validation
 - Progress tracking and UI updates
-- Answer collection and score calculation  
+- Answer collection and score calculation
 - Auto-save and recovery for incomplete quizzes
 - Edge case handling (empty forms, missing data)
 
 **Key Features:**
 
 #### State Management
+
 ```javascript
 // Application state
 let currentStep = 1;
@@ -82,6 +89,7 @@ const totalQuestions = 10;
 ```
 
 #### Data Flow
+
 1. **User Input** → Radio button selection
 2. **Validation** → Check if question is answered
 3. **State Update** → Increment currentStep
@@ -92,6 +100,7 @@ const totalQuestions = 10;
 8. **Navigation** → Redirect to results page
 
 #### Edge Cases Handled
+
 - ✅ Empty form submission (alerts user)
 - ✅ Incomplete quiz recovery (24-hour window)
 - ✅ Page refresh protection (beforeunload warning)
@@ -103,6 +112,7 @@ const totalQuestions = 10;
 ### 2. **results.js** - Results Display & History
 
 **Core Responsibilities:**
+
 - Parse and validate quiz results
 - Dynamic score visualization with animations
 - History tracking and statistics
@@ -110,6 +120,7 @@ const totalQuestions = 10;
 - Error handling for corrupted data
 
 **Data Flow:**
+
 1. **Fetch Data** → Load from localStorage
 2. **Validate** → Check data structure and integrity
 3. **Calculate** → Determine primary love language
@@ -119,6 +130,7 @@ const totalQuestions = 10;
 7. **Share** → Enable result sharing via native API or clipboard
 
 #### History Management
+
 ```javascript
 // History structure stored in localStorage
 {
@@ -130,6 +142,7 @@ const totalQuestions = 10;
 ```
 
 #### Edge Cases Handled
+
 - ✅ Missing results data (friendly error message)
 - ✅ Corrupted JSON (parse error handling)
 - ✅ Invalid score ranges (validation)
@@ -138,6 +151,7 @@ const totalQuestions = 10;
 ### 3. **auth.js** - Form Validation & User Simulation
 
 **Core Responsibilities:**
+
 - Real-time input validation
 - Password strength checking
 - Form submission handling
@@ -145,6 +159,7 @@ const totalQuestions = 10;
 - Error messaging and user feedback
 
 **Validation Rules:**
+
 - Email: Must match valid email pattern
 - Password: Minimum 6 characters
 - Confirm Password: Must match password
@@ -152,6 +167,7 @@ const totalQuestions = 10;
 - Terms: Must be accepted
 
 **Data Flow:**
+
 1. **Input** → User types in form field
 2. **Blur Event** → Trigger validation on focus loss
 3. **Validate** → Check against rules
@@ -211,6 +227,7 @@ lava_current_user: {
 ### Manual Testing Performed
 
 #### Quiz Flow
+
 - ✅ All 10 questions display correctly
 - ✅ Navigation between questions works (Previous/Next)
 - ✅ Progress bar updates accurately (0-100%)
@@ -220,6 +237,7 @@ lava_current_user: {
 - ✅ Results page displays correct scores
 
 #### Edge Cases
+
 - ✅ Empty form submission shows alert
 - ✅ Page refresh during quiz shows recovery prompt
 - ✅ Corrupted localStorage data handled gracefully
@@ -227,6 +245,7 @@ lava_current_user: {
 - ✅ Double-click on submit doesn't cause issues
 
 #### Browser Compatibility
+
 - ✅ Chrome 90+
 - ✅ Firefox 88+
 - ✅ Safari 14+
@@ -234,6 +253,7 @@ lava_current_user: {
 - ✅ Mobile browsers (iOS Safari, Chrome Mobile)
 
 #### Responsive Design
+
 - ✅ Desktop (1920px+)
 - ✅ Laptop (1366px)
 - ✅ Tablet (768px)
@@ -250,6 +270,7 @@ lava_current_user: {
 ## 🔮 Future Enhancements
 
 ### Planned Features
+
 1. **Export to PDF** - Download results as styled PDF
 2. **Comparison Mode** - Compare two users' love languages
 3. **Email Results** - Send results to email (requires backend)
@@ -257,8 +278,7 @@ lava_current_user: {
 5. **Quiz Variations** - Alternative question sets
 6. **Multi-language Support** - Internationalization (i18n)
 
-
-##  Quick Start
+## Quick Start
 
 1. **Clone/Download** the repo
 2. Open `index.html` in any modern browser
@@ -270,21 +290,21 @@ open index.html
 # or
 live-server .  # if you have live-server
 ```
+
 ## 📁 File Structure
 
-| File/Folder | Purpose |
-|-------------|---------|
-| `index.html` | Landing page with hero section & features |
-| `index.css` | Single responsive CSS file (mobile-first) **in root** |
-| `pages/quiz.html` | Interactive 10-question love language quiz |
-| `pages/results.html` | Results visualization with progress bars |
-| `pages/login.html` | User login page with validation |
-| `pages/signup.html` | User registration page |
-| `js/quiz.js` | Quiz navigation, validation, and state management |
-| `js/results.js` | Results display, history tracking, and sharing |
-| `js/auth.js` | Form validation and mock authentication |
-| `screenshot/` | Hero background images |
-
+| File/Folder          | Purpose                                               |
+| -------------------- | ----------------------------------------------------- |
+| `index.html`         | Landing page with hero section & features             |
+| `index.css`          | Single responsive CSS file (mobile-first) **in root** |
+| `pages/quiz.html`    | Interactive 10-question love language quiz            |
+| `pages/results.html` | Results visualization with progress bars              |
+| `pages/login.html`   | User login page with validation                       |
+| `pages/signup.html`  | User registration page                                |
+| `js/quiz.js`         | Quiz navigation, validation, and state management     |
+| `js/results.js`      | Results display, history tracking, and sharing        |
+| `js/auth.js`         | Form validation and mock authentication               |
+| `screenshot/`        | Hero background images                                |
 
 ## 📄 License
 
@@ -293,16 +313,13 @@ MIT License - Feel free to use, modify, and share!
 ## 👩‍💻 Authors
 
 **Christine Nyakio Mwangi**  
-📍 Nairobi, Kenya | 📅 February 2026  
+📍 Nairobi, Kenya | 📅 February 2026
+
 - GitHub: [@nyakiochristine](https://github.com/nyakiochristine/)
 
 **Kelvin Ofili Chukwunweike**  
-📍 Lagos, Nigeria | 📅 February 2026  
+📍 Lagos, Nigeria | 📅 February 2026
+
 - GitHub: [@kelvinofili](https://github.com/Kelvin-Ofili)
 
 ---
-
-
-
-
-
